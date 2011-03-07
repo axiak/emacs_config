@@ -30,15 +30,16 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.modes"))
 (load-library "cython-mode")
 
-(custom-set-faces
+;;; Uncomment for consolas font
+;(custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "microsoft" :family "Consolas")))))
+; '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "microsoft" :family "Consolas")))))
 
 (add-to-list 'load-path
-             "/home/axiak/.emacs.modes/plugins")
+             "~/.emacs.modes/plugins")
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory "~/.emacs.modes/plugins/snippets")
@@ -48,7 +49,7 @@
 (add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
 (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
 
-(add-to-list 'load-path "/home/axiak/.emacs.modes/scala")
+(add-to-list 'load-path "~/.emacs.modes/scala")
 (require 'scala-mode-auto)
 
 (add-hook 'scala-mode-hook
