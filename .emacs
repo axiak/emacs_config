@@ -30,6 +30,14 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.modes"))
 (load-library "cython-mode")
 
+(require 'color-theme)
+(load-library "color-theme-solarized")
+
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-solarized-dark)))
+
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
