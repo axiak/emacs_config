@@ -4,6 +4,8 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+(setq-default show-trailing-whitespace t)
+(setq-default default-indicate-empty-lines t)
 (setq-default indent-tabs-mode nil)
 
 (defun linux-c-mode ()
@@ -39,12 +41,12 @@
      (color-theme-solarized-dark)))
 
 ;;; Uncomment for consolas font
-;(custom-set-faces
+(custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
-; '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "microsoft" :family "Consolas")))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "microsoft" :family "Consolas")))))
 
 (add-to-list 'load-path
              "~/.emacs.modes/plugins")
