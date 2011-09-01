@@ -70,3 +70,21 @@
 (add-to-list 'auto-mode-alist '("\.js$" . javascript-mode))
 (setq javascript-indent-level 2)
 
+
+(defun iwb ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
+
+
+(require 'coffee-mode)
+(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
+(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
+(defun coffee-custom ()
+  "coffee-mode-hook"
+ (set (make-local-variable 'tab-width) 2))
+
+(add-hook 'coffee-mode-hook
+  '(lambda() (coffee-custom)))
