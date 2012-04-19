@@ -37,8 +37,11 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.modes"))
 (load-library "cython-mode")
 
-(require 'color-theme)
-(load-library "color-theme-solarized")
+(progn
+   (require 'color-theme)
+   (load-library "color-theme-solarized")
+   (color-theme-initialize)
+)
 
 (eval-after-load "color-theme"
   '(progn
@@ -48,8 +51,21 @@
 (setq show-trailing-whitespace t)
 
 ;;; Uncomment for ubuntu mono
-(custom-set-faces
- '(default ((t (:foundry "unknown" :family "Ubuntu Mono" :slant normal :height 132 :width normal)))))
+;(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+; '(default ((t (:inherit nil :stipple nil :background "#002b36" :foreground "#839496" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
+
+;(setq default-frame-alist
+;      '(
+;        (foreground-color . "#839496")
+;        (background-color . "#002b36")
+;        )
+;)
+
+;(setq default-frame-alist '((font . "Inconsolata-dz-15")))
 
 
 (add-to-list 'load-path
@@ -63,6 +79,8 @@
 (autoload 'groovy-mode "groovy-mode" "Groovy editing mode." t)
 (add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
 (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+
+(require 'less-mode)
 
 ;;; Scala mode with yas
 ;;;;;;;;;;;;;;;
@@ -109,3 +127,10 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (setq javascript-indent-level 2)
+
+
+(defun save-and-reload () "Save and reload browser" (interactive)
+    (save-buffer)
+    (shell-command "chrome-reload")
+  )
+  (define-key global-map "\C-x\C-r" 'save-and-reload)
