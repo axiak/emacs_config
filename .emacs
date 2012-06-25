@@ -40,16 +40,28 @@
 (require 'color-theme)
 (load-library "color-theme-solarized")
 
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-solarized-dark)))
+;(eval-after-load "color-theme"
+;  '(progn
+;     (color-theme-initialize)
+;     (color-theme-solarized-dark)))
+
+(color-theme-initialize)
+(color-theme-solarized-dark)
 
 (setq show-trailing-whitespace t)
 
 ;;; Uncomment for ubuntu mono
 (custom-set-faces
- '(default ((t (:foundry "unknown" :family "Ubuntu Mono" :slant normal :height 132 :width normal)))))
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#002b36" :foreground "#839496" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
+
+(setq default-frame-alist '(
+    (foreground-color . "#839496")
+    (background-color . "#002b36")
+))
 
 
 (add-to-list 'load-path
@@ -104,8 +116,19 @@
 ;;;;;;;;;;;
 
 
+(load-library "less-mode")
+
 ;(load-library "javascript")
 ;(add-to-list 'auto-mode-alist '("\.js$" . javascript-mode))
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (setq javascript-indent-level 2)
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
+
+
+(require 'haml-mode)
