@@ -37,8 +37,11 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.modes"))
 (load-library "cython-mode")
 
-(require 'color-theme)
-(load-library "color-theme-solarized")
+(progn
+   (require 'color-theme)
+   (load-library "color-theme-solarized")
+   (color-theme-initialize)
+)
 
 ;(eval-after-load "color-theme"
 ;  '(progn
@@ -63,6 +66,8 @@
     (background-color . "#002b36")
 ))
 
+;(setq default-frame-alist '((font . "Inconsolata-dz-15")))
+
 
 (add-to-list 'load-path
              "~/.emacs.modes/plugins")
@@ -75,6 +80,8 @@
 (autoload 'groovy-mode "groovy-mode" "Groovy editing mode." t)
 (add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
 (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+
+(require 'less-mode)
 
 ;;; Scala mode with yas
 ;;;;;;;;;;;;;;;
@@ -123,6 +130,7 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (setq javascript-indent-level 2)
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -132,3 +140,9 @@
 
 
 (require 'haml-mode)
+
+(defun save-and-reload () "Save and reload browser" (interactive)
+    (save-buffer)
+    (shell-command "chrome-reload")
+  )
+  (define-key global-map "\C-x\C-r" 'save-and-reload)
