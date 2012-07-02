@@ -43,10 +43,10 @@
    (color-theme-initialize)
 )
 
-;(eval-after-load "color-theme"
-;  '(progn
-;     (color-theme-initialize)
-;     (color-theme-solarized-dark)))
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-solarized-dark)))
 
 (color-theme-initialize)
 (color-theme-solarized-dark)
@@ -140,6 +140,7 @@
 
 
 (require 'haml-mode)
+(require 'scss-mode)
 
 (defun save-and-reload () "Save and reload browser" (interactive)
     (save-buffer)
