@@ -148,6 +148,7 @@
 
 
 (require 'haml-mode)
+(require 'slim-mode)
 (require 'scss-mode)
 
 (defun save-and-reload () "Save and reload browser" (interactive)
