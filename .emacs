@@ -140,10 +140,13 @@
 
 
 (require 'haml-mode)
+(require 'yaml-mode)
 (require 'scss-mode)
+(require 'slim-mode)
 
 (defun save-and-reload () "Save and reload browser" (interactive)
     (save-buffer)
     (shell-command "chrome-reload")
   )
   (define-key global-map "\C-x\C-r" 'save-and-reload)
+
