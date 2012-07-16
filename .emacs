@@ -59,7 +59,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#002b36" :foreground "#839496" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
+; '(default ((t (:inherit nil :stipple nil :background "#002b36" :foreground "#839496" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
 
 (setq default-frame-alist '(
     (foreground-color . "#839496")
@@ -156,7 +156,7 @@
     (save-buffer)
     (shell-command "chrome-reload")
   )
-  (define-key global-map "\C-x\C-r" 'save-and-reload)
+(define-key global-map "\C-x\C-r" 'save-and-reload)
 
 
 (autoload 'vala-mode "vala-mode" "Major mode for editing Vala code." t)
