@@ -54,7 +54,7 @@
 (setq show-trailing-whitespace t)
 
 ;;; Uncomment for ubuntu mono
-(custom-set-faces
+;(custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
@@ -65,8 +65,16 @@
     (foreground-color . "#839496")
     (background-color . "#002b36")
 ))
+; '(default ((t (:inherit nil :stipple nil :background "#002b36" :foreground "#839496" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
 
-;(setq default-frame-alist '((font . "Inconsolata-dz-15")))
+;(setq default-frame-alist
+;      '(
+;        (foreground-color . "#839496")
+;        (background-color . "#002b36")
+;        )
+;)
+
+(setq default-frame-alist '((font . "Inconsolata-dz-15")))
 
 
 (add-to-list 'load-path
@@ -141,8 +149,8 @@
 
 (require 'haml-mode)
 (require 'yaml-mode)
-(require 'scss-mode)
 (require 'slim-mode)
+(require 'scss-mode)
 
 (defun save-and-reload () "Save and reload browser" (interactive)
     (save-buffer)
@@ -150,3 +158,9 @@
   )
   (define-key global-map "\C-x\C-r" 'save-and-reload)
 
+
+(autoload 'vala-mode "vala-mode" "Major mode for editing Vala code." t)
+(add-to-list 'auto-mode-alist '("\\.vala$" . vala-mode))
+(add-to-list 'auto-mode-alist '("\\.vapi$" . vala-mode))
+(add-to-list 'file-coding-system-alist '("\\.vala$" . utf-8))
+(add-to-list 'file-coding-system-alist '("\\.vapi$" . utf-8))
