@@ -65,6 +65,7 @@
     (foreground-color . "#839496")
     (background-color . "#002b36")
 ))
+
 ; '(default ((t (:inherit nil :stipple nil :background "#002b36" :foreground "#839496" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
 
 ;(setq default-frame-alist
@@ -74,7 +75,7 @@
 ;        )
 ;)
 
-(setq default-frame-alist '((font . "Inconsolata-dz-15")))
+;(setq default-frame-alist '((font . "Inconsolata-dz-15")))
 
 
 (add-to-list 'load-path
@@ -151,6 +152,8 @@
 (require 'yaml-mode)
 (require 'slim-mode)
 (require 'scss-mode)
+(require 'sass-mode)
+
 
 (defun save-and-reload () "Save and reload browser" (interactive)
     (save-buffer)
@@ -164,3 +167,6 @@
 (add-to-list 'auto-mode-alist '("\\.vapi$" . vala-mode))
 (add-to-list 'file-coding-system-alist '("\\.vala$" . utf-8))
 (add-to-list 'file-coding-system-alist '("\\.vapi$" . utf-8))
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.ejs$" . html-mode))
+

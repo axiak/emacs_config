@@ -56,8 +56,9 @@ Special commands:
   (add-to-list 'compilation-error-regexp-alist scss-compile-error-regex)
   (add-hook 'after-save-hook 'scss-compile-maybe nil t))
 
-(define-key scss-mode-map "\C-c\C-c" 'scss-compile)
-
+;;;; TODO: Not possible to use multiline regexs flymake? flymake-err-[line]-patterns
+;; '("Syntax error:\s*\\(.*\\)\n\s*on line\s*\\([0-9]+\\) of \\([^ ]+\\)$" 3 2 nil 1)
+;;(push '("on line \\([0-9]+\\) of \\([^ ]+\\)$" 2 1 nil 2) flymake-err-line-patterns)
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
