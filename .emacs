@@ -1,3 +1,12 @@
+(defun setenv-from-shell (varname)
+  (setenv varname (replace-regexp-in-string
+                   "[ \t\n]*$"
+                   ""
+                   (shell-command-to-string (concat "$SHELL --login -i -c 'echo $" varname "'")))))
+
+(setenv-from-shell "PYTHONPATH")
+(setenv-from-shell "PATH")
+
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
@@ -48,8 +57,8 @@
      (color-theme-initialize)
      (color-theme-solarized-dark)))
 
-(color-theme-initialize)
-(color-theme-solarized-dark)
+;(color-theme-initialize)
+;(color-theme-solarized-dark)
 
 (setq show-trailing-whitespace t)
 
@@ -75,7 +84,10 @@
 ;        )
 ;)
 
-;(setq default-frame-alist '((font . "Inconsolata-dz-15")))
+(setq default-frame-alist '((font . "Inconsolata-dz-15")))
+
+; (set-face-attribute 'default nil
+;                :family "Inconsolata" :height 145 :weight 'normal)
 
 
 (add-to-list 'load-path
@@ -141,19 +153,28 @@
 (setq javascript-indent-level 2)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 
-(require 'haml-mode)
+;(require 'haml-mode)
 (require 'yaml-mode)
 (require 'slim-mode)
 (require 'scss-mode)
 (require 'sass-mode)
 
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.styl$" . sass-mode))
+
+(require 'mustache-mode)
+(add-to-list 'auto-mode-alist '("\\.hbs$" . mustache-mode))
+
+(require 'feature-mode)
+(add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
 (defun save-and-reload () "Save and reload browser" (interactive)
     (save-buffer)
@@ -168,7 +189,45 @@
 (add-to-list 'file-coding-system-alist '("\\.vala$" . utf-8))
 (add-to-list 'file-coding-system-alist '("\\.vapi$" . utf-8))
 
-(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+;(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+
 (add-to-list 'auto-mode-alist '("\\.ejs$" . html-mode))
 
 (setq css-indent-offset 2)
+
+(require 'ipython)
+
+
+(require 'clojure-mode)
+(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+
+
+(require 'flymake)
+
+(when (load "flymake" t)
+  (defun flymake-pyflakes-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+               'flymake-create-temp-inplace))
+       (local-file (file-relative-name
+            temp-file
+            (file-name-directory buffer-file-name))))
+      (list "/Users/maxiak/bin/pycheckers"  (list local-file))))
+   (add-to-list 'flymake-allowed-file-name-masks
+             '("\\.py\\'" flymake-pyflakes-init)))
+
+(add-hook 'python-mode-hook 
+      (lambda () 
+        (unless (eq buffer-file-name nil) (flymake-mode 1)) ;dont invoke flymake on temporary buffers for the interpreter
+        (local-set-key [f2] 'flymake-goto-prev-error)
+        (local-set-key [f3] 'flymake-goto-next-error)
+        ))
+
+
+(autoload 'markdown-mode "markdown-mode.el"
+        "Major mode for editing Markdown files" t)
+     (setq auto-mode-alist
+        (cons '("\\.md" . markdown-mode) auto-mode-alist))
+
+(autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
+
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
